@@ -3,29 +3,30 @@
 namespace App\Http\Controllers;
 use App\Models\Site;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SiteController extends Controller
 {
     public function index(){
-//        $id = 8;
-        $sites = Site::orderBy('id','desc')->paginate();   //ok
+//
+        $useractive = Auth::user()->id;
+        $sites = Site::orderBy('id','desc')->where('user_id',$useractive)->get();   //ok
 //        $sites = Site::where('id',$id)->paginate();
         return view('sites.site', compact('sites'));
     }
 
-//    public function search(Request $request){
-//
-////        $dato = $request->search;
-////        $sites = Site::where('name_s','like %',$dato,'%')->orderBy('id','desc')->paginate();
-////        return redirect()->route('sites.index');
-//        return $request;
-//    }
+    public function search(Request $request){
+        $useractive = Auth::user()->id;
+        $date = "%".$request->search."%";
+        $sites = Site::where('name_s','like',$date)->where('user_id','=',$useractive)->orderBy('id','desc')->get();
+        return view('sites.site', compact('sites'));
+    }
 
     public function create(){
         return view('sites.newsite');
     }
 
-    public function save(Request $request){
+    public function store(Request $request){
         $request->validate([
             'nameSite' => 'required',
             'emailSite' => 'required',
@@ -36,7 +37,7 @@ class SiteController extends Controller
         $nuevo->username_s = $request->usernameSite;
         $nuevo->email_s = $request->emailSite;
         $nuevo->password_s = $request->pswSite;
-        $nuevo->user_id_u = 5;
+        $nuevo->user_id = 1;
         $nuevo->save();
         return redirect()->route('sites.index');
     }

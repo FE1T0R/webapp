@@ -3,7 +3,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\User;
-use Faker\Core\Number;
+
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -20,15 +20,18 @@ class UserFactory extends Factory
     public function definition(): array
     {
                return [
-            'name_u' => fake()->name(),
-            'lastname_u' => fake()->lastName(),
-            'email_u' => fake()->unique()->safeEmail(),
-            'username_u' => fake()->userName,
-            'phone_u' => fake()->phoneNumber,
+            'name' => fake()->name(),
+            'lastname' => fake()->lastName(),
+            'email' => fake()->unique()->safeEmail(),
+            'username' => fake()->userName,
+            'phone' => fake()->phoneNumber,
+            'question1' => fake()->randomElement([1,2,3,4,5,6]),
+            'question2' => fake()->randomElement([1,2,3,4,5,6]),
+            'question3' => fake()->randomElement([1,2,3,4,5,6]),
             'answer1' => Str::random(10),
             'answer2' => Str::random(10),
             'answer3' => fake()->colorName,
-            'master_key' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
 //            'llavemaestra' => fake()->password(7,20),
             'email_verified_at' => now(),
             'remember_token' => Str::random(10)

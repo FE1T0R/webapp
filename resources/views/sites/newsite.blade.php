@@ -5,7 +5,7 @@
         <div class='row'>
             <div class='col-md-12'>
                 <div class='card card-body text-center'>
-                    <form action="{{route('sites.save')}}" method="POST"  class="text-center">
+                    <form action="{{route('sites.store')}}" method="POST"  class="text-center">
                         @csrf
                         @method('PUT')
                         <div class="row-mb-12">

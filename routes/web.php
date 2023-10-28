@@ -17,34 +17,42 @@ use App\Http\Controllers\GeneratorController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-//Route::get('/',function() {
-//    return view('welcome');
-//});
-
-Route::get('/', function(){return view('home');})->name('home');
-/// RUTA DE ACCESO A SITIOS VARIOS DENTRO DEL APLICATIVO
-//Route::controller(HomeController::class)->group(function (){
-//    Route::get('/', 'index')->name('home');
-//    Route::get('/about', 'about')->name('about');
-//});
-//
-///RUTAS DE ACCESO A LOS SITIOS
-Route::controller(SiteController::class)->group(function (){
-    Route::get('/sites', 'index')->name('sites.index');
-    Route::put('/sites', 'save')->name('sites.save');
-    Route::get('/sites/newsite', 'create')->name('sites.newsite');
-//    Route::post('/sites/search', 'search')->name('sites.search');
-    Route::put('/sites/{site}', 'update')->name('sites.update');
-    Route::get('/sites/{site}/edit', 'edit')->name('sites.edit');
-    Route::delete('/sites/{site}', 'destroy')->name('sites.destroy');
+Route::get('/',function() {
+    return view('welcome');
 });
 
+Route::get('/', function(){return view('home');})->name('home');
 
-///RUTAS DE ACCESO A LA AUTENTICACIÓN
-//Route::controller(AuthController::class)->group(function(){
-//    Route::get('/auth/sign_in', 'sign_in')->name('auth.sign_in');
-//    Route::get('/auth/sign_up', 'sign_up')->name('auth.sign_up');
-//});
 
-///RUTAS DE ACCESO AL GENERADOR DE CONTRASEÑAS
-//Route::get('/generator', GeneratorController::class)->name('generator.index');
+//////////////////////////////////////////////////// RUTA DE ACCESO A SITIOS VARIOS DENTRO DEL APLICATIVO
+Route::controller(HomeController::class)->group(function (){
+    Route::get('/', 'index')->name('home');
+    Route::get('/about', 'about')->name('about');
+});
+//
+////////////////////////////////////////////////////RUTAS DE ACCESO A LOS SITIOS
+
+Route::controller(SiteController::class)->group(function (){
+    Route::get('/sites', 'index')->name('sites.index')->middleware('auth');
+    Route::put('/sites', 'store')->name('sites.store')->middleware('auth');
+    Route::get('/sites/create', 'create')->name('sites.create')->middleware('auth');
+    Route::put('/sites/search', 'search')->name('sites.search')->middleware('auth');
+    Route::put('/sites/{site}', 'update')->name('sites.update')->middleware('auth');
+    Route::get('/sites/{site}/edit', 'edit')->name('sites.edit')->middleware('auth');
+    Route::delete('/sites/{site}', 'destroy')->name('sites.destroy')->middleware('auth');
+});
+
+//Route::resource('sites',SiteController::class)->middleware('auth');
+
+
+/////////////////////////////////////////////////////////////////RUTAS DE ACCESO A LA AUTENTICACIÓN
+Route::controller(AuthController::class)->group(function(){
+    Route::post('/auth/log_out', 'log_out')->name('auth.log_out');
+    Route::view('/auth/sign_in', 'auth.sign_in')->name('auth.form.sign_in')->middleware('guest');
+    Route::post('/auth/sign_in/validate', 'sign_in')->name('auth.sign_in')->middleware('guest');
+    Route::view('/auth/sign_up', 'auth.sign_up')->name('auth.form.sign_up')->middleware('guest');
+    Route::post('/auth/sign_up/validate', 'sign_up')->name('auth.sign_up')->middleware('guest');
+});
+//
+/////////////////////////////////////////////////////////////RUTAS DE ACCESO AL GENERADOR DE CONTRASEÑAS
+Route::get('/generator', GeneratorController::class)->name('generator.index');

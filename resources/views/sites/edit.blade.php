@@ -9,7 +9,7 @@
                         @csrf
                         @method('PUT')
                         <div class="row-mb-12">
-                        <div >
+                        <div>
                             <label class="fluid">Name's Site
                                 <input type="text" name="nameSite" class="form-control -fluid" value="{{$site->name_s}}"
                                         autofocus>

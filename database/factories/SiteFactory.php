@@ -20,7 +20,7 @@ class SiteFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id_u' => fake()->NumberBetween([1],[15]),
+            'user_id' => fake()->randomElement([1,2,3,4,5]),
             'name_s' => fake()->unique()->name(),
             'email_s' => fake()->safeEmail(),
             'username_s' => fake()->userName,

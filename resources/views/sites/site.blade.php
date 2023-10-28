@@ -2,22 +2,30 @@
 @section('title','Sitios')
 @section('content')
     <div class="container-xl">
-    <form action="" method="POST">
+    <form action="{{route('sites.search')}}" method="POST">
+        @csrf
+        @method('PUT')
         <br>
         <div class="input-group mb-3">
-            <input type="text" name="search" class="form-control" placeholder="Buscar Sitios"
-                   aria-label="buscar sitio" aria-describedby="button-addon2">
-            <button type="submit" name="buscar" value="buscar" class="btn btn-success btn-block start">Search</button>
-            <button type="submit" name="cerrar" value="Cerrar" class="btn btn-danger btn-block reset">Clear</button>
+            <input type="text" name="search" class="form-control" placeholder="Search by site"
+                   aria-label="search Site" aria-describedby="button-addon2">
+            <button type="submit" value="search" class="btn btn-success btn-block start">Search</button>
+            <button type="submit" value="clear" class="btn btn-danger btn-block reset">Clear</button>
         </div>
-
     </form>
-    <form action="{{route('sites.newsite')}}">
+    <form action="{{route('sites.create')}}">
         <br>
         <div class="input-group mb-3">
             <button type="submit" class="btn btn-danger btn-block reset">New Site</button>
         </div>
     </form>
+{{--        <?php --}}
+{{--            if(){?>--}}
+{{--                <button type="button" class="btn-close" aria-label="Close"></button>--}}
+{{--            }--}}
+{{--        --}}
+
+
         <div class="table-responsive">
     <table class="table table-bordered table-hover">
         <thead>
@@ -56,7 +64,7 @@
                                             <tr><td>Names' Site</td><td>{{$site->name_s}}</td></tr>
                                             <tr><td>Usernames' Site</td><td>{{$site->username_s}}</td></tr>
                                             <tr><td>Emails' Site</td><td>{{$site->email_s}}</td></tr>
-                                            <tr><td>Passwords' Site</td><td>{{$site->password_s}}</td></tr>
+                                            <tr><td>Passwords' Site</td><td>{{$site->password_s    }}</td></tr>
                                         </tbody>
                                         </table>
                                         <hr>
@@ -84,6 +92,6 @@
         </tbody>
     </table>
         </div>
-    {{$sites->links()}}
+{{--    {{$sites->links()}}--}}
     </div>
 @endsection

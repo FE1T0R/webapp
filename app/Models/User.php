@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -47,8 +48,8 @@ class User extends Authenticatable
 
     protected function name(): Attribute{
         return new Attribute(
-            get: fn($value) =>  ucwords($value),
-            set: fn($value) => srttolower($value)
+                set: fn($value) => strtolower($value),
+                get: fn($value) => ucwords($value)
         );
 
     }
