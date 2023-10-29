@@ -1,5 +1,5 @@
 @extends('layouts.template')
-@section('title','Nuevo Site')
+@section('title','Passt - New Site')
 @section('content')
     <div class='container'>
         <div class='row'>

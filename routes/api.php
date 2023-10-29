@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/user',[ApiController::class,'users'])->name('apisitios');
-Route::post('/login2',[ApiController::class,'login2'])->name('apisitios2');
+Route::get('/user',[ApiController::class,'users']);
+Route::post('/login',[ApiController::class,'login']);
 
 

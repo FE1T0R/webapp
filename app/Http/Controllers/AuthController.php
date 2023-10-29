@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Site;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -19,15 +21,47 @@ class AuthController extends Controller
             return redirect(route('auth.form.sign_in'));
         }
     }
-    public function sign_up()
-    {
-        return view('auth/sign_up');
-    }
     public function log_out()
     {
         Auth::logout();
         return redirect(route('home'));
     }
+    public function sign_up(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+        $nuevo = new User();
+        $nuevo->name =$request->name;
+        $nuevo->lastname =$request->lastname;
+        $nuevo->email =$request->email;
+        $nuevo->username =$request->username;
+        $nuevo->phone =$request->phone;
+        $nuevo->question1 =$request->question1;
+        $nuevo->question2 =$request->question2;
+        $nuevo->question3 =$request->question3;
+        $nuevo->answer1 =$request->answer1;
+        $nuevo->answer2 =$request->answer2;
+        $nuevo->answer3 =$request->answer3;
+        $nuevo->password =$request->password;
+        $nuevo->save();
+        return redirect()->route('sites.index');
+
+
+//        return redirect(route('sites.index'));
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 }

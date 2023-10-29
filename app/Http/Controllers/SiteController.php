@@ -37,7 +37,7 @@ class SiteController extends Controller
         $nuevo->username_s = $request->usernameSite;
         $nuevo->email_s = $request->emailSite;
         $nuevo->password_s = $request->pswSite;
-        $nuevo->user_id = 1;
+        $nuevo->user_id = Auth::user()->id;
         $nuevo->save();
         return redirect()->route('sites.index');
     }

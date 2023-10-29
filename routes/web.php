@@ -55,4 +55,10 @@ Route::controller(AuthController::class)->group(function(){
 });
 //
 /////////////////////////////////////////////////////////////RUTAS DE ACCESO AL GENERADOR DE CONTRASEÑAS
-Route::get('/generator', GeneratorController::class)->name('generator.index');
+///
+///
+Route::controller(GeneratorController::class)->group(function(){
+Route::get('/generator', 'index')->name('generator.index');
+Route::put('/generator', 'create')->name('generator.create');
+});
+//Route::current('',);

@@ -21,11 +21,11 @@ return new class extends Migration
             $table->string('phone');
             $table->integer('question1');
             $table->integer('question2');
-            $table->integer('question3');
+            $table->String('question3');
             $table->string('answer1');
             $table->string('answer2');
             $table->string('answer3');
-            $table->string('password')->nullable();
+            $table->string('password');
 //            $table->string('master_key')->nullable();
             $table->rememberToken();
             $table->timestamps();

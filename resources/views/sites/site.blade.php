@@ -1,5 +1,5 @@
 @extends('layouts.template')
-@section('title','Sitios')
+@section('title','Passt - My Sites')
 @section('content')
     <div class="container-xl">
     <form action="{{route('sites.search')}}" method="POST">
