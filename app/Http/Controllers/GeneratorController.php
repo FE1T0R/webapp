@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Site;
 use Psy\Util\Str;
@@ -16,47 +17,85 @@ class GeneratorController extends Controller
         $passlength = 0;
         return view('generator.generator',compact('passlength'));
     }
-    public function create(Request $request){
-//        $cap = fake()->randomElement(['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','V','X','Y','Z']);
-//        $low = fake()->randomElement(['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','v','x','y','z']);
-//        $char = fake()->randomElement(['!','"','#','%','&','/','(','$',')','=','?','¡','¡','¿',"\'",'[',']','{','}','-','*','+','.','_',' ',';',':','Ñ','ñ']);
-//        $num = fake()->randomElement(['1','2','3','4','5','6','7','8','9','0']);
+    public function create(Request $request)
+    {
+        $passlength = $this->generator($request)['passlength'];
+        $createdPass = $this->generator($request)['createdPass'];
+        return view('generator.generator',compact(['passlength','createdPass']));
+    }
+    public function editPass(Site $site)
+    {
+        $site = $this->require($site);
+        return view('sites.edit',compact('site'));
+    }
+    public function createPass()
+    {
+        $site= new Site();
+        $site->password_s = $this->require($site)['password_s'];
+        $createdPass = $site->password_s;
+//        $site = $this->require($site);
+        return view('sites.newsite',compact('createdPass'));
+//        return $site->password_s;
+    }
+    public function require(Site $site)
+    {
+        $new = new Request;
+        $new->capital = false;
+        $new->lower = false;
+        $new->number = false;
+        $new->character = false;
+        $new->qcapital = 3;
+        $new->qlower = 3;
+        $new->qnumber = 3;
+        $new->qcharacter = 3;
 
+        $site->password_s = $this->generator($new)['createdPass'];
+//        return redirect()->route('sites.edit',compact(['id_site','site']));
+//        return view('sites.edit',compact('site');
+        return $site;
+    }
+
+
+    public function generator(Request $request){
         $cap = "";
         $low = "";
         $char = "";
         $num = "";
         $passlength = 0;
-        for($i = 1; $i <= $request->qcapital;$i ++){
-            if($request->capital == true) {
+//
+        // capital case
+        if($request->capital == false){
+            $passlength = $passlength + $request->qcapital;
+            for($i = 1; $i <= $request->qcapital;$i ++){
                 $cap = $cap . fake()->randomElement(['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','V','X','Y','Z']);
-                $passlength += $request->qcapital;
-            }else{$cap = "";}
-        }
-        for($i = 1; $i <= $request->qlower;$i ++){
-            if($request->lower == true) {
+            }
+        }else{$cap = "";}
+        // lower case
+        if($request->lower == false) {
+        $passlength = $passlength + $request->qlower;
+            for($i = 1; $i <= $request->qlower;$i ++){
                 $low = $low . fake()->randomElement(['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','v','x','y','z']);
-                $passlength += $request->qlower;
-            }else{$low = "";}
-        }
-        for($i = 1; $i <= $request->qnumber;$i ++){
-            if($request->number == true) {
-                $num = $num . fake()->randomElement(['1','2','3','4','5','6','7','8','9','0']);
-                $passlength += $request->qnumber;
-            }else{$num = "";}
-        }
-        for($i = 1; $i <= $request->qcharacter;$i ++){
-            if($request->character == true) {
-                $char = $char . fake()->randomElement(['!','"','#','%','&','/','(','$',')','=','?','|','[',']','{','}','-','*','+','.','_',' ',';',':']);
-                $passlength += $request->qcharacter;
-            }else{$char = "";}
-        }
+            }
+        }else{$low = "";}
+        // number case
+        if($request->number == false) {
+            $passlength = $passlength + $request->qnumber;
+            for($i = 1; $i <= $request->qnumber;$i ++){
+               $num = $num . fake()->randomElement(['1','2','3','4','5','6','7','8','9','0']);
+            }
+        }else{$num = "";}
+
+        //character case
+        if($request->character == false) {
+            $passlength = $passlength + $request->qcharacter;
+            for($i = 1; $i <= $request->qcharacter;$i ++){
+               $char = $char . fake()->randomElement(['!','"','#','%','&','/','(','$',')','=','?','|','[',']','{','}','-','*','+','.','_',' ',';',':']);
+            }
+        }else{$char = "";}
 
         $createdPass = str_shuffle($low.$cap.$num.$char);
-        return view('generator.generator',compact(['passlength','createdPass']));
-
-
-//        return $request->character;
+//        return view('generator.generator',compact(['passlength','createdPass']));
+        return compact(['passlength','createdPass']);
     }
 
 

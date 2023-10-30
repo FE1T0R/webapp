@@ -18,17 +18,18 @@
                             <div class="col-lg-8">
                                 <div class="card-body p-md-5 mx-md-4">
 
-                                    <div class="text-center">
-                                        <img src="{{asset('multimedia/icon.png')}}"
-
-                                             style="width: 80px;" alt="logo">
-                                        <h4 class="mt-1 mb-5 pb-1">Passt</h4>
+                                    <div class="input-group m-0">
+                                        <img src="{{asset('multimedia/icon.png')}}" width="30px" alt="logo" height="30px">
+                                        <h4 class="mt-1 mb-5 pb-1">&nbsp;Passt - Generator</h4>
                                     </div>
                                     @if($passlength >= 12)
                                         <div class="text-center pt-1 mb-5 pb-1">
-                                            <label>Your password was created with {{$passlength}} characters</label>
-                                            <input class="form-control text-center" type="text" value="{{$createdPass}}" aria-label="Disabled input example" disabled readonly>
-                                        </div>
+                                            <label for="textcopied">Your password was created with {{$passlength}} characters</label>
+{{--                                            {{$createdPass}}--}}
+                                            <input class="form-control text-center" type="text" value="{{$createdPass}}" id="textcopied" aria-label="Disabled input example" disabled readonly>
+                                            <label id="label" for="copy"></label><br>
+                                            <a href="{{route('generator.index')}}"><button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" id="copy" onclick="myFunction('textcopied')">Copy & reload</button></a>
+                                            </div>
                                     @endif
 
                                     <form action="{{route('generator.create')}}" method="POST">
@@ -36,47 +37,47 @@
                                         @method('PUT')
                                         <div class="input-group mb-3">
                                             <div class="input-group-text">
-                                                <input class="form-check-input" type="checkbox" role="switch" name="lower" id="flexSwitchCheckChecked" checked>
+                                                <input class="form-check-input" type="checkbox" role="switch" name="lower" id="lowercheck"  checked disabled>
                                             </div>
-                                                <input class="form-control" type="text" value="Lowercase letters" aria-label="Disabled input example" disabled readonly>
-                                                <input class="form-control" type="text" value="a-b-c-d-e-f-g-h-i-j" aria-label="Disabled input example" disabled readonly>
+                                                <input class="form-control" type="text" name="Lowercase letters" value="Lowercase letters" aria-label="Disabled input example" disabled readonly>
+                                                <input class="form-control" type="text" name="examlow" value="a-b-c-d-e-f-g-h-i-j" aria-label="Disabled input example" disabled readonly>
                                             <div class="input-group-text">
-                                                <input class="form-control" type="number" id="quantity" value="3" name="qlower" min="3" max="6">
-                                            </div>
-                                        </div>
-
-
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-text">
-                                                <input class="form-check-input" type="checkbox" role="switch" name="capital" id="flexSwitchCheckChecked" checked>
-                                            </div>
-                                                <input class="form-control" type="text" value="Capital letters" aria-label="Disabled input example" disabled readonly>
-                                                <input class="form-control" type="text" value="A-B-C-D-E-F-G-H-I" aria-label="Disabled input example" disabled readonly>
-                                            <div class="input-group-text">
-                                                <input class="form-control" type="number" id="quantity" value="3" name="qcapital" min="3" max="6">
+                                                <input class="form-control" type="number" id="quantitylower" value="3" name="qlower" min="3" max="6">
                                             </div>
                                         </div>
 
 
                                         <div class="input-group mb-3">
                                             <div class="input-group-text">
-                                                <input class="form-check-input" type="checkbox" role="switch" name="number" id="flexSwitchCheckChecked" checked>
+                                                <input class="form-check-input" type="checkbox" role="switch" name="capital" id="capitalcheck" checked disabled>
                                             </div>
-                                                <input class="form-control" type="text" value="Numbers" aria-label="Disabled input example" disabled readonly>
-                                                <input class="form-control" type="text" value="1-2-3-4-5-6-7-8-9-0" aria-label="Disabled input example" disabled readonly>
+                                                <input class="form-control" type="text" name="Capital letters" value="Capital letters" aria-label="Disabled input example" disabled readonly>
+                                                <input class="form-control" type="text" name="examcap" value="A-B-C-D-E-F-G-H-I" aria-label="Disabled input example" disabled readonly>
                                             <div class="input-group-text">
-                                                <input class="form-control" type="number" id="quantity" value="3" name="qnumber" min="3" max="6">
+                                                <input class="form-control" type="number" id="quantitycapital" value="3" name="qcapital" min="3" max="6">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-text">
+                                                <input class="form-check-input" type="checkbox" role="switch" name="number" id="numbercheck" checked disabled>
+                                            </div>
+                                                <input class="form-control" type="text" name="Numbers" value="Numbers" aria-label="Disabled input example" disabled readonly>
+                                                <input class="form-control" type="text" name="examnum" value="1-2-3-4-5-6-7-8-9-0" aria-label="Disabled input example" disabled readonly>
+                                            <div class="input-group-text">
+                                                <input class="form-control" type="number" id="quantitynumber" value="3" name="qnumber" min="3" max="6">
                                             </div>
                                         </div>
 
                                         <div class="input-group mb-3">
                                             <div class="input-group-text">
-                                                <input class="form-check-input" type="checkbox" role="switch" name="character" id="flexSwitchCheckChecked" checked>
+                                                <input class="form-check-input" type="checkbox" role="switch" name="character" id="charactercheck" checked disabled>
                                             </div>
-                                                <input class="form-control" type="text" value="Special Characters" aria-label="Disabled input example" disabled readonly>
-                                                <input class="form-control" type="text" value='!-"-$-%-&-/-(-)-=?' aria-label="Disabled input example" disabled readonly>
+                                                <input class="form-control" type="text" name="Special Characters" value="Special Characters" aria-label="Disabled input example" disabled readonly>
+                                                <input class="form-control" type="text" name="examchar" value='!-"-$-%-&-/-(-)-=?' aria-label="Disabled input example" disabled readonly>
                                             <div class="input-group-text">
-                                                <input class="form-control" type="number" id="quantity" value="3" name="qcharacter" min="3" max="6">
+                                                <input class="form-control" type="number" id="quantitycharacter" value="3" name="qcharacter" min="3" max="6">
                                             </div>
                                         </div>
 
@@ -87,7 +88,7 @@
                                         </div>
 
                                     </form>
-
+                                    @guest()
                                     <form action="{{route('auth.form.sign_up')}}" method="GET">
 
                                         <div class="d-flex align-items-center justify-content-center pb-4">
@@ -101,9 +102,9 @@
                                             <button type="submit" class="btn btn-outline-danger">Sign In</button>
                                         </div>
                                     </form>
+                                    @endguest
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

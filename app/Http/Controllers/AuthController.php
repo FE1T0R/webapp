@@ -5,12 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\Site;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-
     public function sign_in()
     {
         $credentials = request()->only('email','password');
@@ -48,9 +46,6 @@ class AuthController extends Controller
         $nuevo->password =$request->password;
         $nuevo->save();
         return redirect()->route('sites.index');
-
-
-//        return redirect(route('sites.index'));
     }
 
 

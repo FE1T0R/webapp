@@ -7,15 +7,11 @@
                 <div class='card card-body'>
                     <h1>Bienvenido a Passt !</h1>
                     <h2>tu Gestor de Contraseñas</h2>
+                    <img src="{{asset('multimedia/animation.gif')}}" alt="" height="120px" width="800´x">
                     <p>Passt es un herramienta que te permitirá hacer un correcta aplicación y administracion de tus
                         contraseñas y demás datos sensibles requeridos para hacer un inicio de sesión en cualquier
                         sistema de información en el cual requieras identificarte.</p><br>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto atque dolore fugit
-                        perferendis ut! Ab beatae consequuntur esse explicabo ipsa neque quod, rem sapiente sunt
-                        tempora tempore totam veniam vero.</p><br>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus ex expedita fugit ipsam iste
-                        mollitia possimus, similique voluptate. Deleniti dolorem eveniet ipsa laborum maxime. Expedita
-                        explicabo mollitia temporibus unde voluptates!</p>
+
 
                 </div>
             </div>

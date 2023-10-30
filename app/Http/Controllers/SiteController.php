@@ -22,8 +22,11 @@ class SiteController extends Controller
         return view('sites.site', compact('sites'));
     }
 
+
+
     public function create(){
-        return view('sites.newsite');
+        $createdPass = "";
+        return view('sites.newsite',compact('createdPass'));
     }
 
     public function store(Request $request){
@@ -41,7 +44,6 @@ class SiteController extends Controller
         $nuevo->save();
         return redirect()->route('sites.index');
     }
-
     public function edit(Site $site){
         return view('sites.edit',compact('site'));
     }
@@ -64,5 +66,4 @@ class SiteController extends Controller
         $site->delete();
         return redirect()->route('sites.index');
     }
-//
 }

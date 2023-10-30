@@ -59,6 +59,8 @@ Route::controller(AuthController::class)->group(function(){
 ///
 Route::controller(GeneratorController::class)->group(function(){
 Route::get('/generator', 'index')->name('generator.index');
-Route::put('/generator', 'create')->name('generator.create');
+Route::get('/{site}/generator', 'editPass')->name('generator.editPass');
+Route::get('/generator/create', 'createPass')->name('generator.createPass');
+Route::put('/generator/create', 'create')->name('generator.create');
 });
 //Route::current('',);
