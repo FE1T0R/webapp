@@ -9,7 +9,7 @@
     <link rel="shortcut icon" sizes="192x192" type="image/png" href="{{asset('favicon.ico') }}">
     <title>@yield('title')</title>
 </head>
-<body style="background-color: #eee;">
+<body style="background-color: #eee">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
     <div class="container-fluid">
         <div>
@@ -26,7 +26,7 @@
                 @auth
                 @if(Route::currentRouteName()=='sites.index')
                 <li class="nav-item">
-                    <a class="nav-link mx-2" aria-current="page" href="{{route('home')}}">Validar Link</a>
+                    <a class="nav-link mx-2" aria-current="page" href="{{route('about')}}">About us</a>
                 </li>
                     @else
                         <li class="nav-item">
@@ -42,8 +42,8 @@
                     {{Auth::user()->username}}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="{{route('sites.index')}}">Profile</a></li>
-                        <li><a class="dropdown-item" href="{{route('generator.index')}}">Master Key</a></li>
+{{--                        <li><a class="dropdown-item" href="{{route('sites.index')}}">Profile</a></li>--}}
+{{--                        <li><a class="dropdown-item" href="{{route('generator.index')}}">Master Key</a></li>--}}
                         <li>
                             <form style="display: inline" action="{{route('auth.log_out')}}" method="post">
                                 @csrf

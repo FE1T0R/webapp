@@ -47,21 +47,15 @@
                                             <select class="form-outline mb-2" aria-label="Large select example" name="question1">
                                                 <option selected value="1">What city were you born in?</option>
                                                 <option value="2">In what city or town did your parents meet?</option>
-                                                <option value="3">Question 3</option>
                                             </select>
                                             <input type="text" id="answer1" name="answer1" class="form-control mb-3"
                                                    placeholder="Insert your answer number 1"/>
 
                                             <select class="form-outline mb-2" aria-label="Large select example" name="question2">
-                                                <option selected value="4">What city were you born in?</option>
-                                                <option value="5">In what city or town did your parents meet?</option>
-                                                <option value="6">Question 3</option>
+                                                <option selected value="4">What was/were your grandma's lastname?</option>
+                                                <option value="5">What is the name of your first girl/boyfriend ?</option>
                                             </select>
-{{--                                            <select class="form-outline mb-2" aria-label="Large select example" name="question2">--}}
-{{--                                                <option selected value="4">Who was your favorite subject at the middle-school?</option>--}}
-{{--                                                <option value="5">Question 5</option>--}}
-{{--                                                <option value="6">Question 6</option>--}}
-{{--                                            </select>--}}
+
                                             <input type="text" id="answer2" name="answer2" class="form-control mb-3"
                                                    placeholder="Insert your answer number 2"/>
                                             <input type="text" id="question3" name="question3" class="form-control mb-3"
@@ -111,15 +105,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
-
-
-
-
-
-
-
-
                                     </form>
                                     <form action="{{route('auth.form.sign_in')}}" method="GET">
                                         <div class="d-flex align-items-center justify-content-center pb-4">

@@ -25,7 +25,6 @@
 {{--            }--}}
 {{--        --}}
 
-
         <div class="table-responsive">
             @if(sizeof($sites) > 0)
             <table class="table table-bordered table-hover">
@@ -51,12 +50,6 @@
                                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
                                     See psw
                                 </a>
-
-
-{{--                                <a class="btn btn-primary btn-block fa-lg gradient-custom-2" data-bs-toggle="collapse"--}}
-{{--                                   href="#collapseExample{{$site->id}}" role="button" aria-expanded="false" aria-controls="collapseExample">--}}
-{{--                                    See password--}}
-{{--                                </a><br>--}}
                                 <p class="form-control-plaintext collapse" id="{{$site->id}}psw">{{$site->password_s}}</p>
                             </div>
                         </td>
@@ -106,7 +99,7 @@
                 </tbody>
             </table>
             @else
-                <h4>You don't already have any site created, Would you like creating one?</h4>
+                <h4>There is any site to show, Would you like creating one?</h4>
             @endif
         </div>
     </div>

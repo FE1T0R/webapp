@@ -51,5 +51,27 @@ class ApiController extends Controller{
         return response()->json($response);
     }
 
+    public function login2(Request $request){
+        $response = ['status'=>0,'msg'=>''];
+        $data = json_decode($request->getContent());
+        $user = User::where('email',$data->email)->first();
+        if($user){
+            if(Hash::check($data->password,$user->password)){
+                $token = $user->createToken('example');
+                $response['status'] = 1;
+                $response['msg'] = $token->plainTextToken;
+            }else{
+                $response['msg'] = "Credentials wrong";
+            }
+
+        }else{
+            $response['msg'] = "User Found";
+        }
+        return response()->json($response);
+    }
+
+
+
+
 }
 
