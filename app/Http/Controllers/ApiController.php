@@ -51,7 +51,7 @@ class ApiController extends Controller{
         return response()->json($response);
     }
 
-    public function login2(Request $request){
+    public function login3(Request $request){
         $response = ['status'=>0,'msg'=>''];
         $data = json_decode($request->getContent());
         $user = User::where('email',$data->email)->first();
