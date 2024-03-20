@@ -38,8 +38,8 @@
                                             <label for="textcopied">Your password was created with {{$passlength}} characters</label>
 {{--                                            {{$createdPass}}--}}
                                             <input class="form-control text-center" type="text" value="{{$createdPass}}" id="textcopied" aria-label="Disabled input example" disabled readonly>
-                                            <label id="label" for="copy"></label><br>
-                                            <a href="{{route('generator.index')}}"><button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" id="copy" onclick="myFunction('textcopied')">Copy to clipboard & reload</button></a>
+                                            <label id="labelPss" for="copy"></label><br>
+                                            <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" id="copy" onclick="myFunction('textcopied')">Copy to clipboard & reload</button>
                                             @auth()<label id="label2" for="copy2"></label><br>
                                             <a href="{{route('sites.index')}}"><button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" id="copy2" onclick="myFunction('textcopied')">Assign to site</button></a>@endauth
                                             </div>

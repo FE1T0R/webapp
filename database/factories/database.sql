@@ -1,5 +1,5 @@
-CREATE DATABASE passt;
-USE passt;
+CREATE DATABASE passt3;
+USE passt3;
 DROP TABLE IF EXISTS Usuarios; #terminado
 CREATE TABLE Usuarios(
     id_usuario INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -11,6 +11,9 @@ CREATE TABLE Usuarios(
     respuesta1 VARCHAR(60) NOT NULL,
     respuesta2 VARCHAR(60) NOT NULL,
     respuesta3 VARCHAR(60) NOT NULL,
+    pregunta1 VARCHAR(60) NOT NULL,
+    pregunta2 VARCHAR(60) NOT NULL,
+    pregunta3 VARCHAR(60) NOT NULL,
     llavemaestra VARCHAR(255));
 
 

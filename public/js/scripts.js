@@ -42,7 +42,7 @@ if (alertTrigger) {
 function myFunction(id_element) {
     // Get the text field
     var copyText = document.getElementById(id_element);
-    var label = document.getElementById('label');
+    var label = document.getElementById('labelPss');
 
     // Select the text field
     copyText.select();
@@ -52,6 +52,6 @@ function myFunction(id_element) {
     navigator.clipboard.writeText(copyText.value);
 
     // Alert the copied text
-    // alert("Copied the text: " + copyText.value);
-    label.document.textContent = "Dato copiado";
+    //alert("Copied the text: " + copyText.value);
+    label.textContent = "Copiado";
 }
