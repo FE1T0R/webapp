@@ -46,7 +46,7 @@ class ApiController extends Controller{
             }
 
         }else{
-            $response['msg'] = "User Found";
+            $response['msg'] = "User not Found";
         }
         return response()->json($response);
     }
