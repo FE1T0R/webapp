@@ -39,10 +39,10 @@ if (alertTrigger) {
 
 // funcion para el boton de copiado en el generador
 
-function myFunction(id_element) {
+function myFunction(id_element,id_label) {
     // Get the text field
     var copyText = document.getElementById(id_element);
-    var label = document.getElementById('labelPss');
+    var label = document.getElementById(id_label);
 
     // Select the text field
     copyText.select();

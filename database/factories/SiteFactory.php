@@ -21,10 +21,11 @@ class SiteFactory extends Factory
     {
         return [
             'user_id' => fake()->randomElement([1,2,3,4,5]),
-            'name_s' => fake()->unique()->name(),
+            'name_s' => fake()->randomElement(['Netflix','Facebook','Aula Virtual','Paypal','Disney','Hotmail','Mercado Libre','Biblored','MiClaro','MovistarApp','Disney','Gef','Reebok','ASIS','Youtube','Steam','Tidal','Amazon','WSchool','Nvidia','Spotify','Computador Oficina','Sistema Contable','Seguridad Social','EPS Sura','Cerveceria']),
             'email_s' => fake()->safeEmail(),
             'username_s' => fake()->userName,
-            'password_s' => fake()->password
+            'password_s' => fake()->password,
+            'icon_s' => '../public/multimedia/icon-www.png'
         ];
     }
 }

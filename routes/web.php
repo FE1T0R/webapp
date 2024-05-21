@@ -17,11 +17,7 @@ use App\Http\Controllers\GeneratorController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/',function() {
-    return view('welcome');
-});
-
-Route::get('/', function(){return view('home');})->name('home');
+//Route::view('/', function(){return view('home');})->name('home');
 
 
 //////////////////////////////////////////////////// RUTA DE ACCESO A SITIOS VARIOS DENTRO DEL APLICATIVO
@@ -37,9 +33,9 @@ Route::controller(SiteController::class)->group(function (){
     Route::put('/sites', 'store')->name('sites.store')->middleware('auth');
     Route::get('/sites/create', 'create')->name('sites.create')->middleware('auth');
     Route::put('/sites/search', 'search')->name('sites.search')->middleware('auth');
-    Route::put('/sites/{site}', 'update')->name('sites.update')->middleware('auth');
-    Route::get('/sites/{site}/edit', 'edit')->name('sites.edit')->middleware('auth');
-    Route::delete('/sites/{site}', 'destroy')->name('sites.destroy')->middleware('auth');
+    Route::put('/sites/{site}', 'update')->name('sites.update')->middleware('auth.session');
+    Route::get('/sites/edit/{site}', 'edit')->name('sites.edit')->middleware('auth.session');
+    Route::delete('/sites/{site}', 'destroy')->name('sites.destroy')->middleware('auth.session');
 });
 
 //Route::resource('sites',SiteController::class)->middleware('auth');
@@ -49,6 +45,7 @@ Route::controller(SiteController::class)->group(function (){
 Route::controller(AuthController::class)->group(function(){
     Route::post('/auth/log_out', 'log_out')->name('auth.log_out');
     Route::view('/auth/sign_in', 'auth.sign_in')->name('auth.form.sign_in')->middleware('guest');
+    Route::view('/auth/recover_pass', 'auth.recover_pass')->name('auth.form.recover')->middleware('guest');
     Route::post('/auth/sign_in/validate', 'sign_in')->name('auth.sign_in')->middleware('guest');
     Route::view('/auth/sign_up', 'auth.sign_up')->name('auth.form.sign_up')->middleware('guest');
     Route::post('/auth/sign_up/validate', 'sign_up')->name('auth.sign_up')->middleware('guest');
@@ -62,5 +59,6 @@ Route::get('/generator', 'index')->name('generator.index');
 Route::get('/{site}/generator', 'editPass')->name('generator.editPass');
 Route::get('/generator/create', 'createPass')->name('generator.createPass');
 Route::put('/generator/create', 'create')->name('generator.create');
+Route::put('/generator/show', 'show')->name('generator.show');
 });
 //Route::current('',);

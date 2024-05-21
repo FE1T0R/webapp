@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('username_s',45)->nullable();
             $table->string('email_s');
             $table->string('password_s');
+            $table->string('icon_s');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

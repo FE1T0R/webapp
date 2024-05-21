@@ -5,6 +5,8 @@
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-xl-10">
+                    
+                    
                     <div class="card rounded-3 text-black">
                         <div class="row g-0">
                             <div class="col-lg-6">
@@ -19,30 +21,45 @@
 
                                     <form action="{{route('auth.sign_in')}}" method="POST">
                                         @csrf
+
+                                        <x-alert_form_comp>
+                                            <x-slot name="type">warning</x-slot>
+                                        </x-alert_form_comp>
+                                        {{-- @error('email'|'password')
+                                            <x-alert_form_comp>
+                                                <x-slot name="type">warning</x-slot>
+                                                <x-slot name="message">{{$message}}</x-slot>
+                                            </x-alert_form_comp>
+                                        @enderror --}}
+                                        
                                         <div class="form-outline mb-4">
+                                            
                                             <input type="email" id="email" name="email" class="form-control"
                                                    placeholder="Email address"/>
-                                            <label class="form-label" for="email">E-mail</label>
-                                        </div>
+                                                   <label class="form-label" for="email" autocomplete="off">E-mail</label> 
+                                                </div>
                                         <div class="form-outline mb-4">
+                                            
                                             <input type="password" id="password" name="password" class="form-control"/>
-                                            <label class="form-label" for="password">Password</label>
+                                            <label class="form-label" for="password">Masterkey</label>
+                                            
                                         </div>
 
-                                        <div class="row mb-4">
+                                        <div class="row mb-4 justify-content-center">
                                             <div class="col d-flex justify-content-center">
                                                 <!-- Checkbox -->
-                                                <div class="form-check">
+                                                {{-- <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
                                                     <label class="form-check-label" for="form1Example3">
                                                         Remember me
                                                     </label>
-                                                </div>
+                                                </div> --}}
+                                                
                                             </div>
-
+                                            <a class="w-auto justify-start" id="forgot1" href="{{route('auth.form.recover')}}">Forgot your MasterKey?</a>
                                             <div class="col text-center">
                                                 <!-- Simple link -->
-                                                <a href="#!">Forgot password?</a>
+                                                
                                             </div>
                                         </div>
                                         <div class="text-center pt-1 mb-5 pb-1">

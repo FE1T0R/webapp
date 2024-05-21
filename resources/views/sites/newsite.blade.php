@@ -18,14 +18,15 @@
                                     <form action="{{route('sites.store')}}" method="POST"  class="text-center">
                                         @csrf
                                         @method('PUT')
-                                        <div class="form-outline mb-4">
+                                        <div class="form-outline mb-2">
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text" id="pswSite">Password</span>
                                                 <input type="text" class="form-control" name="pswSite" placeholder="Insert the password's site" value="{{$createdPass}}"
 {{--                                                       {{$site->password_s}}--}}
                                                        aria-label="lpwsSite" aria-describedby="basic-addon1"><br>
+                                                    
+                                                    {{-- <x-modal_comp></x-modal_comp> --}}
                                                 <a href="{{route('generator.createPass')}}"><button type="button" class="btn btn-outline-warning ali">New PSW</button></a>
-                                                {{--                                                    {{route('generator.editSite',$site->id)}}--}}
                                                 @error('pswSite')<span>{{$message}}</span>@enderror
                                             </div>
 
@@ -35,22 +36,51 @@
                                                        aria-label="lnameSite">
                                                 @error('nameSite')<br>{{$message}}@enderror
                                             </div>
-                                            <br>
+                                            
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text" id="usernameSite">Username's site</span>
                                                 <input type="text" class="form-control" name="usernameSite" placeholder="Insert the username's site" value="{{old('usernameSite')}}"
                                                        aria-label="lusernameSite" aria-describedby="basic-addon1">
                                             </div>
-                                            <br>
+                                            
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text" id="emailSite">E-mail</span>
                                                 <input type="email" class="form-control" name="emailSite" placeholder="Insert the e-mail's site" value="{{old('emailSite')}}"
                                                        aria-label="lemailSite" aria-describedby="basic-addon1"><br>
                                                 @error('emailSite')<span>*{{$message}}</span>@enderror
                                             </div>
-                                            <br>
 
+                                            <div class="list-group mb-2">
+                                                <small class="text-muted">
+                                                    
+                                                    
+                                                    {{-- <x-select_comp>
+                                                        <x-slot name="keyword">{{$site->name_s}}</x-slot>
+                                                        <x-slot name="icon">{{$site->icon_s}}</x-slot>
+                                                    </x-select_comp> --}}
+
+                                                    <x-icons_comp>
+                                                        <x-slot name="keyword">Chrome</x-slot>
+                                                        <x-slot name="icon">https://api.iconify.design/logos:chrome.svg</x-slot>
+                                                    </x-icons_comp>
+                                                </small>
+                                            </div>
+
+                                            
+
+
+                                            <br>
+                                            <div class="input-group mb-3">
+                                                <div class="card">
+                                                    {{-- <x-modal_comp>Mundo</x-modal_comp> --}}
+
+
+                                                </div>
+                                            </div>
+
+                                            
                                             <button type="submit" class="btn btn-outline-warning ali">Create Site</button>
+                                            <a href="{{route('sites.index')}}" type="submit" class="btn btn-outline-warning ali">Cancel</a>
                                         </div>
                                     </form>
                                 </div>

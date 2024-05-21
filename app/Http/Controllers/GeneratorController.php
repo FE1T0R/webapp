@@ -6,10 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Site;
-use Psy\Util\Str;
-use function Webmozart\Assert\Tests\StaticAnalysis\lower;
-use function Webmozart\Assert\Tests\StaticAnalysis\natural;
-
 
 class GeneratorController extends Controller
 {
@@ -23,11 +19,24 @@ class GeneratorController extends Controller
         $createdPass = $this->generator($request)['createdPass'];
         return view('generator.generator',compact(['passlength','createdPass']));
     }
-    public function editPass(Site $site)
+    public function editPass(Site $site)  // ORIGINAL
     {
         $site = $this->require($site);
         return view('sites.edit',compact('site'));
     }
+    
+    public function show(Request $request)  // ORIGINAL
+    {
+        $passlength = $this->generator($request)['passlength'];
+        $createdPass = $this->generator($request)['createdPass'];
+        return view('sites.create',compact('createdPass'));
+    }
+    /*
+    public function editPass(Site $site)
+    {
+        $site = $this->require($site);
+        return $site;
+    }*/
     public function createPass()
     {
         $site= new Site();
@@ -98,6 +107,24 @@ class GeneratorController extends Controller
         return compact(['passlength','createdPass']);
     }
 
+    private static $secretKey = "mododeencriptacion123sad2asd12sa1d2as1d23as1d2sa1d23as1d23sa123dsa54d4sa56d789s7ad89ad21das4d564q7re8e78gf7d";
+    private static $secretIv = '123123121asdasd545as4d6asd';
+    private static $encryptMethod = "AES-256-CBC";
+
+    public static function tokenencrypt($data)
+    {
+        $key = hash('sha256', self::$secretKey);
+        $iv = substr(hash('sha256', self::$secretIv), 0, 16);
+        $result = openssl_encrypt($data, self::$encryptMethod, $key, 0, $iv);
+        return $result = base64_encode($result);
+    }
+    public static function tokendecrypt($data)
+    {
+        $key = hash('sha256', self::$secretKey);
+        $iv = substr(hash('sha256', self::$secretIv), 0, 16);
+        $result = openssl_decrypt(base64_decode($data), self::$encryptMethod, $key, 0, $iv);
+        return $result;
+    }
 
 
 
