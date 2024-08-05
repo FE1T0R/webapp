@@ -39,9 +39,9 @@
                         <input type="text" class="p-2 card col align-middle mb-0 collapse" disabled id="{{$idSite}}psw" value="{{$passwordSite}}">
                         <button class=" fa-lg gradient-custom-2 mb-3 collapse" id="{{$idSite}}psw" onclick="myFunction('{{$idSite}}psw','{{$idSite}}label')">Copy</button>
                         
-                    </div>
-                    
-                    
+                    </div> 
+
+                                       
                     <div class="d-flex mt-2">
                         <a href="#{{$idSite}}psw" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample" class="d-flex">
                             <img src="{{$route}}multimedia/icon-watch.svg" class="img-fluid rounded-start" width="60">
@@ -60,8 +60,6 @@
                         </form>
 
 
-
-                        
                         <a href="#" class="d-flex">
                             <img src="{{$route}}multimedia/icon-favorite-star.svg" class="img-fluid rounded-start" width="60">
                         </a>

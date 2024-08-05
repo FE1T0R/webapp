@@ -22,5 +22,6 @@ use App\Http\Controllers\ApiController;
 Route::get('/user',[ApiController::class,'users']);
 Route::post('/login',[ApiController::class,'login']);
 Route::get('/sites',[ApiController::class,'sites']);
+Route::get('/sites/{site}',[ApiController::class,'sitesindividual']);
 
 

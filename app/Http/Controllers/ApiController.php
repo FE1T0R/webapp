@@ -60,6 +60,11 @@ class ApiController extends Controller{
         $sites = Site::all();
         return response()->json($sites);
     }
+    public function sitesindividual(Site $site){
+        
+        $sites = Site::orderBy('id','desc')->where('user_id',$site)->get();   //ok
+        return response()->json($sites);
+    }
 
 
 

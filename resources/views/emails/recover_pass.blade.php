@@ -57,6 +57,8 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        
                                     </form>
                                     {{-- <a class="btn small mb-10" href="{{route('auth.form.sign_in')}}" role="button">Sing Up</a> --}}
                                     {{-- <a class="btn small mb-10" href="{{route('auth.form.sign_in')}}" role="button">Sing In</a> --}}
