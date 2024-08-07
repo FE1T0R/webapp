@@ -3,12 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Mail\VerificationMail;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
+
+    /// AUTH FUNCTION - SIGN IN 
     public function sign_in(Request $credentials)
     {
         $credentials->validate([
@@ -30,6 +36,9 @@ class AuthController extends Controller
             ])->onlyInput('email');
         }
     }
+
+
+    /// AUTH FUNCTION - LOG OUT
     public function log_out()
     {
         Auth::logout();
@@ -65,12 +74,30 @@ class AuthController extends Controller
         $nuevo->answer3 =$request->answer3;
         $nuevo->password =$request->password;
         $nuevo->save();
+        event(new Registered($nuevo));
+        //Mail::to(Auth::user())->send(new VerificationMail(Auth::user())); 
+        //return redirect()->route('sites.index')->with('alerts','verify');
+    }
+
+    public function emailNotification(){
+        return view('auth.verify-email');
+    }
+
+    public function emailVerification (EmailVerificationRequest $request) {
+        $request->fulfill();
+        //return redirect('/home');
         return redirect()->route('sites.index')->with('alerts','verify');
+    }
+
+    public function resendEmailVerification(Request $request) {
+        $request->user()->sendEmailVerificationNotification();
+     
+        return back()->with('message', 'Verification link sent!');
     }
 
     public function recover()
     {
-        return redirect(route('loyouts.recover_pass'));
+        return view('emails.recover_pass');
     }
 
 }

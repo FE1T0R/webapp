@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -10,14 +11,14 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class ContactUsMail extends Mailable
+class VerificationMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(public User $user)
     {
         //
     }
@@ -28,7 +29,7 @@ class ContactUsMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-                        subject: 'Contact Us Mail',
+            subject: 'Contact Us Mail',
         );
     }
 
@@ -38,7 +39,7 @@ class ContactUsMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.message',
         );
     }
 

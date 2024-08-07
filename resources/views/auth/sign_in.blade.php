@@ -56,7 +56,7 @@
                                                 </div> --}}
                                                 
                                             </div>
-                                            <a class="w-auto justify-start" id="forgot1" href="{{route('auth.form.recover')}}">Forgot your MasterKey?</a>
+                                            <a class="w-auto justify-start" id="forgot1" href="{{route('auth.form.recover_pass')}}">Forgot your MasterKey?</a>
                                             <div class="col text-center">
                                                 <!-- Simple link -->
                                                 

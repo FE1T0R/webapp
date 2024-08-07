@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Mail\VerificationMail;
 use App\Models\Site;
 use App\Models\User;
 use Generator;
@@ -8,11 +10,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class SiteController extends Controller
 {
     public function active(){
         $useractive = Auth::user()->id;
+
+        
         $sites = Site::orderBy('id','desc')->where('user_id',$useractive)->get();   //ok
         return $sites;
     }
